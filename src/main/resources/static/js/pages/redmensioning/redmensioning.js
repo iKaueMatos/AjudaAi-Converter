@@ -2,34 +2,23 @@ import { validateStep } from '/js/module/helper/validate.js';
 import { date as current } from "/js/module/helper/local-storage-utils.js";
 
 const reader = new FileReader();
-let currentLocalStorage = current.currentStep;
+let currentSessionStorage = parseInt(sessionStorage.getItem("currentStepIndex")) || current.currentStep;
 const location = document.body.getAttribute("data-page");
 const preview = document.getElementById("preview");
 const imgContainer = document.createElement("div");
 const fileInput = document.getElementById("formFile");
 const dropZone = document.getElementById("dropZone");
 const previewDiv = document.querySelector(".preview");
-const keepDataCheckbox = document.getElementById("keepData");
 
 async function createImagePreview(file, index) {
   imgContainer.classList.add(
-    "mb-4",
-    "border-gray-300",
-    "p-4",
-    "rounded-lg",
-    "mx-auto",
-    "w-full",
-    "sm:w-[200px]",
-    "md:w-[250px]",
-    "lg:w-[300px]",
-    "h-auto"
+    "mb-4", "border-gray-300", "p-4", "rounded-lg", "mx-auto",
+    "w-full", "sm:w-[200px]", "md:w-[250px]", "lg:w-[300px]", "h-auto"
   );
 
   const imgTitle = document.createElement("h3");
   imgTitle.classList.add("font-semibold", "text-lg", "mb-2", "text-center");
-  imgTitle.textContent = `Imagem ${index + 1}: ${file.name} (${file.type
-    .split("/")[1]
-    .toUpperCase()})`;
+  imgTitle.textContent = `Imagem ${index + 1}: ${file.name} (${file.type.split("/")[1].toUpperCase()})`;
 
   imgContainer.appendChild(imgTitle);
 
@@ -37,14 +26,7 @@ async function createImagePreview(file, index) {
     reader.onload = function (event) {
       const img = new Image();
       img.src = event.target.result;
-      img.classList.add(
-        "max-w-full",
-        "max-h-[200px]",
-        "object-contain",
-        "rounded-lg",
-        "mb-4"
-      );
-
+      img.classList.add("max-w-full", "max-h-[200px]", "object-contain", "rounded-lg", "mb-4");
       img.onload = () => resolve(img);
       img.onerror = reject;
     };
@@ -52,12 +34,7 @@ async function createImagePreview(file, index) {
   });
 
   const imgDimensions = document.createElement("p");
-  imgDimensions.classList.add(
-    "text-sm",
-    "text-gray-600",
-    "mb-2",
-    "text-center"
-  );
+  imgDimensions.classList.add("text-sm", "text-gray-600", "mb-2", "text-center");
   imgDimensions.textContent = `Dimensões: ${img.width} x ${img.height} pixels`;
 
   imgContainer.appendChild(imgDimensions);
@@ -72,7 +49,7 @@ function clearPreview() {
 }
 
 async function previewImages() {
-  const files = fileInput.files; // Use fileInput diretamente
+  const files = fileInput.files;
   if (!files || !preview) return;
 
   preview.innerHTML = "";
@@ -87,14 +64,6 @@ async function previewImages() {
 }
 
 function setupDragAndDrop() {
-  restoreStep();
-
-  keepDataCheckbox.addEventListener("change", () => {
-    if (!keepDataCheckbox.checked) {
-      localStorage.removeItem("uploadedFiles");
-    }
-  });
-
   ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
     dropZone.addEventListener(eventName, preventDefaults, false);
     document.body.addEventListener(eventName, preventDefaults, false);
@@ -128,7 +97,7 @@ function setupDragAndDrop() {
   }
 }
 
-export function inicializeDragAndDrop() {
+function inicializeDragAndDrop() {
   setupDragAndDrop();
 
   fileInput.addEventListener("change", async () => {
@@ -145,24 +114,24 @@ document.addEventListener("DOMContentLoaded", () => {
 function nextStep() {
   const maxSteps = 5;
 
-  if (currentLocalStorage >= maxSteps) return;
+  if (currentSessionStorage >= maxSteps) return;
 
-  if (validateStep(currentLocalStorage + 1)) {
-    currentLocalStorage++;
+  if (validateStep(currentSessionStorage + 1)) {
+    currentSessionStorage++;
     const totalSteps = document.querySelectorAll(".step").length;
 
-    if (currentLocalStorage < totalSteps) {
-      showStep(currentLocalStorage + 1);
-      localStorage.setItem("currentStepIndex", currentLocalStorage);
+    if (currentSessionStorage < totalSteps) {
+      showStep(currentSessionStorage + 1);
+      sessionStorage.setItem("currentStepIndex", currentSessionStorage);
     }
   }
 }
 
 function previousStep() {
-  if (currentLocalStorage > 0) {
-    currentLocalStorage--;
-    showStep(currentLocalStorage + 1);
-    localStorage.setItem("currentStepIndex", currentLocalStorage);
+  if (currentSessionStorage > 0) {
+    currentSessionStorage--;
+    showStep(currentSessionStorage + 1);
+    sessionStorage.setItem("currentStepIndex", currentSessionStorage);
   }
 
   if (preview.innerHTML) {
@@ -171,19 +140,17 @@ function previousStep() {
 }
 
 function showStep(step) {
-  document
-    .querySelectorAll(".step")
-    .forEach((el) => el.classList.add("hidden"));
-  const currentLocalStorageStep = document.getElementById(`step-${step}`);
-  if (currentLocalStorageStep) {
-    currentLocalStorageStep.classList.remove("hidden");
+  document.querySelectorAll(".step").forEach((el) => el.classList.add("hidden"));
+  const currentSessionStorageStep = document.getElementById(`step-${step}`);
+  if (currentSessionStorageStep) {
+    currentSessionStorageStep.classList.remove("hidden");
     updateProgress(step);
   }
 }
 
 function restoreStep() {
-  if (currentLocalStorage > 0) {
-    showStep(currentLocalStorage + 1);
+  if (currentSessionStorage > 0) {
+    showStep(currentSessionStorage + 1);
   }
 }
 
@@ -208,7 +175,7 @@ function startLoading() {
   }
 }
 
-export default {
+export {
   nextStep,
   showStep,
   restoreStep,

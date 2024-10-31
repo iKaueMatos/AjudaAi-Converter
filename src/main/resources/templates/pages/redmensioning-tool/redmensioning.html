@@ -88,6 +88,10 @@
               class="w-full bg-violet-500 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded-lg transition duration-200 ease-in-out">
               Próximo
             </button>
+            <button type="button" onclick="clearForm()"
+              class="w-full bg-violet-400 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded-lg transition duration-200 ease-in-out mt-2">
+              Limpar Dados
+            </button>
           </div>
 
           <!-- Step 3 -->
@@ -119,6 +123,10 @@
               class="w-full bg-violet-500 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded-lg transition duration-200 ease-in-out">
               Próximo
             </button>
+            <button type="button" onclick="clearForm()"
+              class="w-full bg-violet-400 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded-lg transition duration-200 ease-in-out mt-2">
+              Limpar Dados
+            </button>
           </div>
 
           <!-- Step 4 -->
@@ -143,12 +151,16 @@
               class="w-full bg-violet-500 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded-lg transition duration-200 ease-in-out">
               Enviar
             </button>
-            <div class="flex items-center mt-4">
+            <button type="button" onclick="clearForm()"
+              class="w-full bg-violet-400 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded-lg transition duration-200 ease-in-out mt-2">
+              Limpar Dados
+            </button>
+            <!-- <div class="flex items-center mt-4">
               <input type="checkbox" id="keepData" class="mr-2 leading-tight" />
               <label for="keepData" class="text-gray-700 font-medium">
                 Manter os dados após conclusão
               </label>
-            </div>
+            </div> -->
           </div>
 
           
@@ -161,7 +173,7 @@
               class="mt-4 inline-block bg-violet-500 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded-lg transition duration-200 ease-in-out items-center text-center"
               th:href="@{/download/{id}(id=${fileId})}">Baixar Imagem</a>
             </div>
-            <button type="button" onclick="previousStep(1)"
+          <button type="button" onclick="previousStep(1)"
             class="w-full bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-lg transition duration-200 ease-in-out mb-4">
             Voltar para inicio
           </button>
