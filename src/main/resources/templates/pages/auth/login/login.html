@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-br">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="" />
-  <meta name="keywords" content="" />
+  <meta name="description" content="Faça login ou registre-se na Ajuda Ai, uma plataforma inovadora que oferece ferramentas online de qualidade e confiança. Junte-se a nós e comece a aproveitar nossos serviços hoje mesmo!" />
+  <meta name="keywords" content="login, registro, Ajuda Ai, plataforma online, ferramentas, qualidade, confiança, cadastro, entrar" />
   <title>Ajuda AI | Entrar</title>
   <link rel="stylesheet" th:href="@{/dist/output.css}">
   </link>
 </head>
 
-<body class=" flex flex-col min-h-screen">
+<body class="flex flex-col min-h-screen ">
   <div th:replace="fragments/header/header :: header" class="h-auto"></div>
 
   <div class="flex justify-center w-full h-full my-auto xl:gap-14 lg:justify-normal md:gap-5 draggable">
@@ -20,33 +20,41 @@
         <form class="flex flex-col w-full h-full pb-6 text-center rounded-3xl">
           <h3 class="mb-3 text-4xl font-extrabold text-gray-900">Entrar</h3>
           <p class="mb-4 text-gray-700">Insira seu email e senha</p>
-          <a class="flex items-center justify-center w-full py-4 mb-6 text-sm font-medium transition duration-300 rounded-2xl text-gray-900 bg-gray-300 hover:bg-gray-400 focus:ring-4 focus:ring-gray-300">
-            <img class="h-5 mr-2" src="https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/motion-tailwind/img/logos/logo-google.png" alt="Logo Google">
+          <a
+            class="flex items-center justify-center w-full py-4 mb-6 text-sm font-medium text-gray-900 transition duration-300 bg-gray-300 rounded-2xl hover:bg-gray-400 focus:ring-4 focus:ring-gray-300">
+            <img class="h-5 mr-2"
+              src="https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/motion-tailwind/img/logos/logo-google.png"
+              alt="Logo Google">
             Entrar com o Google
           </a>
           <div class="flex items-center mb-3">
-            <hr class="h-0 border-b border-solid border-gray-500 grow">
+            <hr class="h-0 border-b border-gray-500 border-solid grow">
             <p class="mx-4 text-gray-600">ou</p>
-            <hr class="h-0 border-b border-solid border-gray-500 grow">
+            <hr class="h-0 border-b border-gray-500 border-solid grow">
           </div>
-          <label for="email" class="mb-2 text-sm text-start text-gray-900">Email*</label>
+          <label for="email" class="mb-2 text-sm text-gray-900 text-start">Email*</label>
           <input id="email" type="email" placeholder="usuario@example.com"
-            class="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-gray-400 mb-7 placeholder:text-gray-700 bg-gray-200 text-gray-900 rounded-2xl" />
-          <label for="password" class="mb-2 text-sm text-start text-gray-900">Senha*</label>
+            class="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium text-black bg-gray-200 outline-none focus:bg-gray-300 mb-7 placeholder:text-gray-500 rounded-2xl" />
+          <label for="password" class="mb-2 text-sm text-black text-start">Senha*</label>
           <input id="password" type="password" placeholder="Insira uma senha"
-            class="flex items-center w-full px-5 py-4 mb-5 mr-2 text-sm font-medium outline-none focus:bg-gray-400 placeholder:text-gray-700 bg-gray-200 text-gray-900 rounded-2xl" />
+            class="flex items-center w-full px-5 py-4 mb-5 mr-2 text-sm font-medium text-black bg-gray-200 outline-none focus:bg-gray-300 placeholder:text-gray-500 rounded-2xl" />
           <div class="flex flex-row justify-between mb-8">
             <label class="relative inline-flex items-center mr-3 cursor-pointer select-none">
               <input type="checkbox" checked value="" class="sr-only peer">
-              <div class="w-5 h-5 bg-white border-2 rounded-sm border-gray-500 peer peer-checked:border-0 peer-checked:bg-purple-500">
-                <img class="" src="https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/motion-tailwind/img/icons/check.png" alt="check">
+              <div
+                class="w-5 h-5 bg-white border-2 border-gray-500 rounded-sm peer peer-checked:border-0 peer-checked:bg-purple-500">
+                <img class=""
+                  src="https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/motion-tailwind/img/icons/check.png"
+                  alt="check">
               </div>
               <span class="ml-3 text-sm font-normal text-gray-900">Manter-me conectado</span>
             </label>
-            <a href="javascript:void(0)" class="mr-4 text-sm font-medium text-purple-500">Esqueceu a senha?</a>
+            <a href="javascript:void(0)" class="mr-4 text-sm font-medium text-violet-500">Esqueceu a senha?</a>
           </div>
-          <button class="w-full px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded-2xl hover:bg-purple-600 focus:ring-4 focus:ring-purple-100 bg-purple-500">Entrar</button>
-          <p class="text-sm leading-relaxed text-gray-900">Não tem uma conta? <a href="javascript:void(0)" class="font-bold text-gray-700">Crie uma conta</a></p>
+          <button
+            class="w-full px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 bg-violet-500 md:w-96 rounded-2xl hover:bg-violet-600 focus:ring-4 focus:ring-purple-100">Entrar</button>
+          <p class="text-sm leading-relaxed text-gray-900">Não tem uma conta? <a href="/register"
+              class="font-bold text-gray-700">Crie uma conta</a></p>
         </form>
       </div>
     </div>

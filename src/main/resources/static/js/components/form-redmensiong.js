@@ -7,10 +7,8 @@ const progressBar = document.getElementById('progressBar');
 const progressText = document.getElementById('progressText');
 
 window.addEventListener('load', restoreFormData);
-
 form.addEventListener('submit', (event) => {
     event.preventDefault();
-    saveFormData();
     resetProgress();
     submitForm();
 });
@@ -30,14 +28,6 @@ function restoreFormData() {
     form.dimension.value = formDimension;
     form.format.value = formFormat;
     form.compression.value = formCompression;
-}
-
-function saveFormData() {
-    const formData = new FormData(form);
-    sessionStorage.setItem('formTitle', formData.get('title') || '');
-    sessionStorage.setItem('formDimension', formData.get('dimension') || '');
-    sessionStorage.setItem('formFormat', formData.get('format') || '');
-    sessionStorage.setItem('formCompression', formData.get('compression') || '');
 }
 
 function resetProgress() {
@@ -102,11 +92,6 @@ function handleError(response) {
 
 function resetForm() {
     form.reset();
-    sessionStorage.removeItem('currentStepIndex');
-    sessionStorage.removeItem('formTitle');
-    sessionStorage.removeItem('formDimension');
-    sessionStorage.removeItem('formFormat');
-    sessionStorage.removeItem('formCompression');
 
     const steps = document.querySelectorAll('.step');
     steps.forEach(step => step.classList.add('hidden'));

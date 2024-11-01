@@ -1,4 +1,4 @@
-package com.imageupload.image.infra.service;
+package com.imageupload.modules.image.infra.service;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
@@ -8,15 +8,14 @@ import java.io.IOException;
 import org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.imageupload.image.application.dto.ImageProcessingDataRequest;
-import com.imageupload.image.application.service.IImageProcessingService;
-import com.imageupload.image.domain.service.ImageResizerService;
-import com.imageupload.image.domain.service.ImageZipService;
-import com.imageupload.image.domain.service.TempFileService;
+import com.imageupload.modules.image.application.dto.ImageProcessingDataRequest;
+import com.imageupload.modules.image.application.service.IImageProcessingService;
+import com.imageupload.modules.image.domain.service.ImageResizerService;
+import com.imageupload.modules.image.domain.service.ImageZipService;
+import com.imageupload.modules.image.domain.service.TempFileService;
 
 @Service
 public class ImageProcessingService implements IImageProcessingService {

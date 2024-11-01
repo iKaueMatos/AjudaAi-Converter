@@ -2,44 +2,45 @@ import { validateStep } from '/js/module/helper/validate.js';
 import { date as current } from "/js/module/helper/local-storage-utils.js";
 
 const reader = new FileReader();
-let currentSessionStorage = parseInt(sessionStorage.getItem("currentStepIndex")) || current.currentStep;
-// const location = document.body.getAttribute("data-page");
+let currentStepIndex = current.currentStep || 0;
 const preview = document.getElementById("preview");
 const fileInput = document.getElementById("formFile");
 const dropZone = document.getElementById("dropZone");
 const previewDiv = document.querySelector(".preview");
 
 async function createImagePreview(file, index) {
-  const imgContainer = document.createElement("div");
-  imgContainer.classList.add(
-    "border", "border-gray-300", "p-4", "rounded-lg", "bg-white",
-    "flex", "flex-col", "items-center", "shadow-md"
-  );
+  // Criação do contêiner principal para a imagem e seus elementos
+  const mainContainer = document.createElement("div");
+  mainContainer.classList.add("flex", "flex-col", "items-center", "p-4", "rounded-lg", "shadow-md", "bg-white", "m-2");
 
+  // Título da imagem
   const imgTitle = document.createElement("h3");
   imgTitle.classList.add("font-semibold", "text-center", "text-gray-700", "mb-2");
   imgTitle.textContent = `Imagem ${index + 1}: ${file.name} (${file.type.split("/")[1].toUpperCase()})`;
 
+  // Leitura e criação da imagem
   const img = await new Promise((resolve, reject) => {
     reader.onload = function (event) {
       const img = new Image();
       img.src = event.target.result;
-      img.classList.add("w-48", "h-48", "object-cover", "rounded-lg", "mb-2");
+      img.classList.add("w-full", "h-40", "object-cover", "rounded-lg", "mb-2");
       img.onload = () => resolve(img);
       img.onerror = reject;
     };
     reader.readAsDataURL(file);
   });
 
+  // Dimensões da imagem
   const imgDimensions = document.createElement("p");
   imgDimensions.classList.add("text-sm", "text-gray-500", "text-center");
   imgDimensions.textContent = `Dimensões: ${img.width} x ${img.height} pixels`;
 
-  imgContainer.appendChild(imgTitle);
-  imgContainer.appendChild(img);
-  imgContainer.appendChild(imgDimensions);
+  // Adiciona os elementos ao contêiner principal
+  mainContainer.appendChild(imgTitle);
+  mainContainer.appendChild(img);
+  mainContainer.appendChild(imgDimensions);
 
-  return imgContainer;
+  return mainContainer;
 }
 
 function clearPreview() {
@@ -51,7 +52,7 @@ async function previewImages() {
   const files = fileInput.files;
   if (!files || !preview) return;
 
-  preview.innerHTML = "";
+  preview.innerHTML = ""; // Limpar pré-visualizações anteriores
 
   const fileArray = Array.from(files);
   for (const [index, file] of fileArray.entries()) {
@@ -99,24 +100,22 @@ function setupDragAndDrop() {
 function nextStep() {
   const maxSteps = 5;
 
-  if (currentSessionStorage >= maxSteps) return;
+  if (currentStepIndex >= maxSteps) return;
 
-  if (validateStep(currentSessionStorage + 1)) {
-    currentSessionStorage++;
+  if (validateStep(currentStepIndex + 1)) {
+    currentStepIndex++;
     const totalSteps = document.querySelectorAll(".step").length;
 
-    if (currentSessionStorage < totalSteps) {
-      showStep(currentSessionStorage + 1);
-      sessionStorage.setItem("currentStepIndex", currentSessionStorage);
+    if (currentStepIndex < totalSteps) {
+      showStep(currentStepIndex + 1);
     }
   }
 }
 
 function previousStep() {
-  if (currentSessionStorage > 0) {
-    currentSessionStorage--;
-    showStep(currentSessionStorage + 1);
-    sessionStorage.setItem("currentStepIndex", currentSessionStorage);
+  if (currentStepIndex > 0) {
+    currentStepIndex--;
+    showStep(currentStepIndex + 1);
   }
 
   if (preview.innerHTML) {
@@ -126,16 +125,16 @@ function previousStep() {
 
 function showStep(step) {
   document.querySelectorAll(".step").forEach((el) => el.classList.add("hidden"));
-  const currentSessionStorageStep = document.getElementById(`step-${step}`);
-  if (currentSessionStorageStep) {
-    currentSessionStorageStep.classList.remove("hidden");
+  const currentStepElement = document.getElementById(`step-${step}`);
+  if (currentStepElement) {
+    currentStepElement.classList.remove("hidden");
     updateProgress(step);
   }
 }
 
 function restoreStep() {
-  if (currentSessionStorage > 0) {
-    showStep(currentSessionStorage + 1);
+  if (currentStepIndex > 0) {
+    showStep(currentStepIndex + 1);
   }
 }
 
@@ -145,8 +144,8 @@ function updateProgress(step) {
   const progressText = document.getElementById("progressText");
 
   if (progressBar && progressText) {
-      progressBar.style.width = `${progress}%`;
-      progressText.textContent = `${progress.toFixed(0)}%`;
+    progressBar.style.width = `${progress}%`;
+    progressText.textContent = `${progress.toFixed(0)}%`;
   }
 }
 
@@ -155,8 +154,8 @@ function startLoading() {
   const progressText = document.getElementById('progressText');
 
   if (progressBar && progressText) {
-      progressBar.style.width = '100%';
-      progressText.textContent = '100%';
+    progressBar.style.width = '100%';
+    progressText.textContent = '100%';
   }
 }
 

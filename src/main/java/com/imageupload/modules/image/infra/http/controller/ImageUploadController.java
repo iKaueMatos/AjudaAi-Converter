@@ -1,4 +1,4 @@
-package com.imageupload.image.infra.http.controller;
+package com.imageupload.modules.image.infra.http.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.imageupload.image.application.dto.ImageProcessingDataRequest;
-import com.imageupload.image.application.useCases.ImageProcessingUseCase;
+import com.imageupload.modules.image.application.dto.ImageProcessingDataRequest;
+import com.imageupload.modules.image.application.useCases.ImageProcessingUseCase;
 import com.imageupload.shared.response.ResponseDTO;
 
 import jakarta.validation.Valid;

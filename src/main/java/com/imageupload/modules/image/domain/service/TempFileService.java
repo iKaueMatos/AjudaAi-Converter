@@ -1,4 +1,4 @@
-package com.imageupload.image.domain.service;
+package com.imageupload.modules.image.domain.service;
 
 import java.awt.image.BufferedImage;
 import java.io.File;

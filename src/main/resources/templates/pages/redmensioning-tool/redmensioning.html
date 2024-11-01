@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ferramenta Online | Redimensionamento de Imagens</title>
   <link rel="stylesheet" th:href="@{/dist/output.css}">
-  </link>
   <meta name="description"
     content="Redimensione e comprima imagens JPG e PNG de forma fácil e rápida com nossa ferramenta online. Carregue várias imagens, defina altura, largura e formato de conversão, e faça o download com compressão personalizada.">
   <meta name="keywords"
@@ -14,10 +13,10 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
 
-<body class="bg-gray-100 flex flex-col min-h-screen" data-page="redmensioning">
+<body class="flex flex-col min-h-screen bg-gray-100" data-page="redmensioning">
   <header th:replace="fragments/header/header :: header"></header>
 
-  <div class="container mx-auto mt-10 flex-grow px-4">
+  <div class="container flex-grow px-4 mx-auto mt-10">
     <h1 class="text-4xl font-bold text-center text-black">Redimensionar Imagens</h1>
     <p class="text-lg font-medium text-center text-black">
       Redimensione imagens nos formatos JPG e PNG definindo altura e largura em pixels <br />
@@ -28,72 +27,72 @@
       <div class="w-full max-w-lg">
         <!-- Progress Bar -->
         <div class="relative pt-1 mb-6">
-          <div class="flex mb-2 items-center justify-between">
+          <div class="flex items-center justify-between mb-2">
             <div>
               <span
-                class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-violet-600 bg-violet-200">
+                class="inline-block px-2 py-1 text-xs font-semibold uppercase rounded-full text-violet-600 bg-violet-200">
                 Progresso
               </span>
             </div>
             <div class="text-right">
-              <span id="progressText" class="text-xs font-semibold inline-block text-violet-600">0%</span>
+              <span id="progressText" class="inline-block text-xs font-semibold text-violet-600">0%</span>
             </div>
           </div>
-          <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-violet-200">
+          <div class="flex h-2 mb-4 overflow-hidden text-xs rounded bg-violet-200">
             <div id="progressBar" style="width: 0%"
-              class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-violet-500">
+              class="flex flex-col justify-center text-center text-white shadow-none whitespace-nowrap bg-violet-500">
             </div>
           </div>
         </div>
 
         <form id="multiStepForm" method="POST" enctype="multipart/form-data"
-          class="bg-white p-8 rounded-lg shadow-lg border border-gray-200" target="downloadFrame" action="/upload"
+          class="p-8 bg-white border border-gray-200 rounded-lg shadow-lg" target="downloadFrame" action="/upload"
           onsubmit="startLoading()">
           <!-- Step 1 -->
           <div class="step" id="step-1">
             <div class="mb-6">
-              <label for="title" class="block text-gray-700 font-semibold mb-2">Título do Arquivo:</label>
+              <label for="title" class="block mb-2 font-semibold text-gray-700">Título do Arquivo:</label>
               <input type="text"
                 class="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
                 id="title" name="title" placeholder="Digite o título" required />
             </div>
             <button id="enter" type="button" onclick="nextStep()"
-              class="w-full bg-violet-500 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded-lg transition duration-200 ease-in-out">
+              class="w-full px-4 py-2 font-bold text-white transition duration-200 ease-in-out rounded-lg bg-violet-500 hover:bg-violet-600">
               Próximo
             </button>
           </div>
 
           <!-- Step 2 -->
-          <div class="step hidden" id="step-2">
-            <div class="mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="hidden step" id="step-2">
+            <div class="grid grid-cols-1 gap-4 mb-6 md:grid-cols-2">
               <div>
-                <label for="width" class="block text-gray-700 font-semibold mb-2">Largura (px):</label>
+                <label for="width" class="block mb-2 font-semibold text-gray-700">Largura (px):</label>
                 <input type="number"
                   class="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
                   id="width" name="width" placeholder="Ex: 1200" required />
               </div>
 
               <div>
-                <label for="height" class="block text-gray-700 font-semibold mb-2">Altura (px):</label>
+                <label for="height" class="block mb-2 font-semibold text-gray-700">Altura (px):</label>
                 <input type="number"
                   class="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
                   id="height" name="height" placeholder="Ex: 1300" required />
               </div>
             </div>
             <button type="button" onclick="previousStep(1)"
-              class="w-full bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-lg transition duration-200 ease-in-out mb-4">
+              class="w-full px-4 py-2 mb-4 font-bold text-gray-800 transition duration-200 ease-in-out bg-gray-300 rounded-lg hover:bg-gray-400">
               Voltar
             </button>
             <button type="button" id="enter" onclick="nextStep()"
-              class="w-full bg-violet-500 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded-lg transition duration-200 ease-in-out">
+              class="w-full px-4 py-2 font-bold text-white transition duration-200 ease-in-out rounded-lg bg-violet-500 hover:bg-violet-600">
               Próximo
             </button>
           </div>
 
           <!-- Step 3 -->
-          <div class="step hidden" id="step-3">
+          <div class="hidden step" id="step-3">
             <div class="mb-6">
-              <label for="format" class="block text-gray-700 font-semibold mb-2">Formato de Conversão:</label>
+              <label for="format" class="block mb-2 font-semibold text-gray-700">Formato de Conversão:</label>
               <select
                 class="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
                 id="format" name="format" required>
@@ -102,7 +101,7 @@
               </select>
             </div>
             <div class="mb-6">
-              <label for="compression" class="block text-gray-700 font-semibold mb-2">Nível de Compressão:</label>
+              <label for="compression" class="block mb-2 font-semibold text-gray-700">Nível de Compressão:</label>
               <select
                 class="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
                 id="compression" name="compression" required>
@@ -112,71 +111,64 @@
               </select>
             </div>
             <button type="button" onclick="previousStep(2)"
-              class="w-full bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-lg transition duration-200 ease-in-out mb-4">
+              class="w-full px-4 py-2 mb-4 font-bold text-gray-800 transition duration-200 ease-in-out bg-gray-300 rounded-lg hover:bg-gray-400">
               Voltar
             </button>
             <button type="button" onclick="nextStep()" id="enter"
-              class="w-full bg-violet-500 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded-lg transition duration-200 ease-in-out">
+              class="w-full px-4 py-2 font-bold text-white transition duration-200 ease-in-out rounded-lg bg-violet-500 hover:bg-violet-600">
               Próximo
             </button>
           </div>
 
           <!-- Step 4 -->
-          <div class="step hidden" id="step-4">
+          <div class="hidden step" id="step-4">
             <div class="mb-6">
-              <label for="formFile" class="block text-gray-700 font-semibold mb-2">Selecionar Imagens:</label>
+              <label for="formFile" class="block mb-2 font-semibold text-gray-700">Selecionar Imagens:</label>
               <div id="dropZone"
-                class="w-full px-4 py-6 border-dashed border-2 border-gray-300 rounded-lg bg-gray-50 flex flex-col items-center justify-center">
+                class="flex flex-col items-center justify-center w-full px-4 py-6 border-2 border-gray-300 border-dashed rounded-lg bg-gray-50">
                 <input class="hidden" type="file" id="formFile" name="files" multiple accept="image/*" required
                   onchange="previewImages()" />
-                <label for="formFile" class="cursor-pointer bg-violet-500 text-white px-4 py-2 rounded-lg">
+                <label for="formFile" class="px-4 py-2 text-white rounded-lg cursor-pointer bg-violet-500">
                   Clique ou arraste as imagens aqui
                 </label>
                 <p class="mt-2 text-gray-500">Arraste suas imagens para o upload</p>
               </div>
             </div>
             <button type="button" onclick="previousStep(3)"
-              class="w-full bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-lg transition duration-200 ease-in-out mb-4">
+              class="w-full px-4 py-2 mb-4 font-bold text-gray-800 transition duration-200 ease-in-out bg-gray-300 rounded-lg hover:bg-gray-400">
               Voltar
             </button>
             <button id="enter" type="submit"
-              class="w-full bg-violet-500 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded-lg transition duration-200 ease-in-out">
+              class="w-full px-4 py-2 font-bold text-white transition duration-200 ease-in-out rounded-lg bg-violet-500 hover:bg-violet-600">
               Enviar
             </button>
-            <!-- <div class="flex items-center mt-4">
-              <input type="checkbox" id="keepData" class="mr-2 leading-tight" />
-              <label for="keepData" class="text-gray-700 font-medium">
-                Manter os dados após conclusão
-              </label>
-            </div> -->
           </div>
 
-          
           <!-- Step 5: Download -->
-          <div class="step hidden" id="step-5">
-            <div class="mb-6 flex flex-col">
+          <div class="hidden step" id="step-5">
+            <div class="flex flex-col mb-6">
               <h2 class="text-2xl font-semibold text-gray-700">Download da Imagem</h2>
               <p class="text-gray-600">Clique no botão abaixo para baixar sua imagem redimensionada:</p>
               <a id="downloadButton"
-              class="mt-4 inline-block bg-violet-500 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded-lg transition duration-200 ease-in-out items-center text-center"
+              class="items-center inline-block px-4 py-2 mt-4 font-bold text-center text-white transition duration-200 ease-in-out rounded-lg bg-violet-500 hover:bg-violet-600"
               th:href="@{/download/{id}(id=${fileId})}">Baixar Imagem</a>
             </div>
-          <button type="button" onclick="clearForm()"
-            class="w-full bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-lg transition duration-200 ease-in-out mb-4">
-            Voltar para inicio
-          </button>
+            <button type="button" onclick="clearForm()"
+              class="w-full px-4 py-2 mb-4 font-bold text-gray-800 transition duration-200 ease-in-out bg-gray-300 rounded-lg hover:bg-gray-400">
+              Voltar para inicio
+            </button>
           </div>
         </form>
+        <div class="container flex flex-col items-center hidden w-full mt-10 justify-items-center preview">
+          <h1 class="mb-4 text-2xl font-bold">Imagens</h1>
+          <div id="preview" class="grid w-full max-w-screen-lg grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  
-  <div class="w-full preview hidden">
-    <h1 class="font-bold text-2xl">Imagens</h1>
-    <div id="preview" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
-  </div>
 
-  <div class="toast hidden" id="toast">
+  <div class="hidden toast" id="toast">
     <div class="toast-content">
       <p>Seu download está pronto!</p>
     </div>

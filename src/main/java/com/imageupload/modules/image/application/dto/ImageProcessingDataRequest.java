@@ -1,6 +1,4 @@
-package com.imageupload.image.application.dto;
-
-
+package com.imageupload.modules.image.application.dto;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;

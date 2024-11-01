@@ -1,10 +1,10 @@
-package com.imageupload.image.application.service;
+package com.imageupload.modules.image.application.service;
 
 import java.io.IOException;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.imageupload.image.application.dto.ImageProcessingDataRequest;
+import com.imageupload.modules.image.application.dto.ImageProcessingDataRequest;
 
 
 public interface IImageProcessingService {

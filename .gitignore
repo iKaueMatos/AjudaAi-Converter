@@ -31,3 +31,35 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Environment variables
+.env
+
+# Logs
+logs
+*.log
+pids
+*.pid
+*.seed
+
+# Build outputs
+dist/
+build/
+out/
+coverage/
+*.tgz
+
+# IDEs and Editors
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Miscellaneous
+*.swp
+*.swo

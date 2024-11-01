@@ -1,6 +1,8 @@
 {
   "devDependencies": {
-    "eslint": "^9.12.0"
+    "commitizen": "^4.3.1",
+    "eslint": "^9.12.0",
+    "husky": "^9.1.6"
   },
   "scripts": {
     "build": "tailwindcss -i ./src/main/resources/static/css/global.css -o ./src/main/resources/static/dist/output.css --watch"
