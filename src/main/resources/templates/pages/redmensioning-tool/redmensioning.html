@@ -88,10 +88,6 @@
               class="w-full bg-violet-500 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded-lg transition duration-200 ease-in-out">
               Próximo
             </button>
-            <button type="button" onclick="clearForm()"
-              class="w-full bg-violet-400 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded-lg transition duration-200 ease-in-out mt-2">
-              Limpar Dados
-            </button>
           </div>
 
           <!-- Step 3 -->
@@ -123,10 +119,6 @@
               class="w-full bg-violet-500 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded-lg transition duration-200 ease-in-out">
               Próximo
             </button>
-            <button type="button" onclick="clearForm()"
-              class="w-full bg-violet-400 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded-lg transition duration-200 ease-in-out mt-2">
-              Limpar Dados
-            </button>
           </div>
 
           <!-- Step 4 -->
@@ -151,10 +143,6 @@
               class="w-full bg-violet-500 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded-lg transition duration-200 ease-in-out">
               Enviar
             </button>
-            <button type="button" onclick="clearForm()"
-              class="w-full bg-violet-400 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded-lg transition duration-200 ease-in-out mt-2">
-              Limpar Dados
-            </button>
             <!-- <div class="flex items-center mt-4">
               <input type="checkbox" id="keepData" class="mr-2 leading-tight" />
               <label for="keepData" class="text-gray-700 font-medium">
@@ -173,7 +161,7 @@
               class="mt-4 inline-block bg-violet-500 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded-lg transition duration-200 ease-in-out items-center text-center"
               th:href="@{/download/{id}(id=${fileId})}">Baixar Imagem</a>
             </div>
-          <button type="button" onclick="previousStep(1)"
+          <button type="button" onclick="clearForm()"
             class="w-full bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-lg transition duration-200 ease-in-out mb-4">
             Voltar para inicio
           </button>
@@ -185,7 +173,7 @@
   
   <div class="w-full preview hidden">
     <h1 class="font-bold text-2xl">Imagens</h1>
-    <div id="preview" class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+    <div id="preview" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
   </div>
 
   <div class="toast hidden" id="toast">

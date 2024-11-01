@@ -14,6 +14,4 @@ function showDownloadNotification(message = "Seu download está pronto!", durati
     }).showToast();
 }
 
-export default {
-  showDownloadNotification
-}
+export { showDownloadNotification }

@@ -3,30 +3,28 @@ import { date as current } from "/js/module/helper/local-storage-utils.js";
 
 const reader = new FileReader();
 let currentSessionStorage = parseInt(sessionStorage.getItem("currentStepIndex")) || current.currentStep;
-const location = document.body.getAttribute("data-page");
+// const location = document.body.getAttribute("data-page");
 const preview = document.getElementById("preview");
-const imgContainer = document.createElement("div");
 const fileInput = document.getElementById("formFile");
 const dropZone = document.getElementById("dropZone");
 const previewDiv = document.querySelector(".preview");
 
 async function createImagePreview(file, index) {
+  const imgContainer = document.createElement("div");
   imgContainer.classList.add(
-    "mb-4", "border-gray-300", "p-4", "rounded-lg", "mx-auto",
-    "w-full", "sm:w-[200px]", "md:w-[250px]", "lg:w-[300px]", "h-auto"
+    "border", "border-gray-300", "p-4", "rounded-lg", "bg-white",
+    "flex", "flex-col", "items-center", "shadow-md"
   );
 
   const imgTitle = document.createElement("h3");
-  imgTitle.classList.add("font-semibold", "text-lg", "mb-2", "text-center");
+  imgTitle.classList.add("font-semibold", "text-center", "text-gray-700", "mb-2");
   imgTitle.textContent = `Imagem ${index + 1}: ${file.name} (${file.type.split("/")[1].toUpperCase()})`;
-
-  imgContainer.appendChild(imgTitle);
 
   const img = await new Promise((resolve, reject) => {
     reader.onload = function (event) {
       const img = new Image();
       img.src = event.target.result;
-      img.classList.add("max-w-full", "max-h-[200px]", "object-contain", "rounded-lg", "mb-4");
+      img.classList.add("w-48", "h-48", "object-cover", "rounded-lg", "mb-2");
       img.onload = () => resolve(img);
       img.onerror = reject;
     };
@@ -34,11 +32,12 @@ async function createImagePreview(file, index) {
   });
 
   const imgDimensions = document.createElement("p");
-  imgDimensions.classList.add("text-sm", "text-gray-600", "mb-2", "text-center");
+  imgDimensions.classList.add("text-sm", "text-gray-500", "text-center");
   imgDimensions.textContent = `Dimensões: ${img.width} x ${img.height} pixels`;
 
-  imgContainer.appendChild(imgDimensions);
+  imgContainer.appendChild(imgTitle);
   imgContainer.appendChild(img);
+  imgContainer.appendChild(imgDimensions);
 
   return imgContainer;
 }
@@ -96,20 +95,6 @@ function setupDragAndDrop() {
     e.stopPropagation();
   }
 }
-
-function inicializeDragAndDrop() {
-  setupDragAndDrop();
-
-  fileInput.addEventListener("change", async () => {
-    await previewImages();
-  });
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  if (location === "redmensioning") {
-    inicializeDragAndDrop();
-  }
-});
 
 function nextStep() {
   const maxSteps = 5;

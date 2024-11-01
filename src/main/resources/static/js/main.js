@@ -6,8 +6,9 @@ window.nextStep = redmensioning.nextStep;
 window.previousStep = redmensioning.previousStep;
 window.closeMenu = pages.closeMenu;
 window.openMenu = pages.openMenu;
-window.startLoding = redmensioning.startLoding;
+window.startLoading = redmensioning.startLoading;
 window.clearForm = form.resetForm;
+window.previewImages = redmensioning.previewImages;
 
 document.addEventListener("DOMContentLoaded", () => {
   if (location === "redmensioning") {
