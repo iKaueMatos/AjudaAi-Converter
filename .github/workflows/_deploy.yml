@@ -13,6 +13,17 @@ jobs:
     steps:
       - name: Checkout the files
         uses: actions/checkout@v3
+      
+      # - name: Setup NodeJS
+      #   uses: actions/setup-node@v2
+      #   with:
+      #     node-version: '20.x'
+
+      # - name: Install dependencies
+      #   run: npm install
+      
+      # - name: Build application
+      #   run: npm run build
 
       - name: Setup Java
         uses: actions/setup-java@v3

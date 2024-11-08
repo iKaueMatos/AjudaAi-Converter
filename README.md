@@ -1,60 +1,42 @@
-# AjudaAi-Converter
 
-<div style="text-align: center;">
-  <img src="https://1.bp.blogspot.com/-TevOgPVC2dE/WnILAnucRVI/AAAAAAAAGU0/OlrnoLsf2fs9aKpm9_BGEqk5R54gUCZbgCLcBGAs/s1600/spring-boot.png" alt="X Clone Logo" width="230px" height="100px" />
-</div>
+# Bem-vindo ao Repositório da **Nova Tools Ferramentas**
 
-## 🚀 Visão Geral
+![Nova Software Logo](https://i.postimg.cc/mg85mFxf/logo.png)
 
-Bem-vindo ao **Ajuda AI**! Este projeto é uma aplicação web (Spring boot MVC) totalmente funcional projetada para converter imagens e redmensionalas de maneira simultanea.
+A **Nova Software** é uma startup inovadora, focada em soluções de comércio eletrônico e ERP. Nosso objetivo é oferecer ferramentas de alta performance para simplificar e otimizar a gestão de negócios online, garantindo mais eficiência e crescimento para nossos clientes.
 
-## 🌟 Principais Funcionalidades
+## **Sobre Nós**
 
-- **Redimensionamento de Imagens**: Ajuste as dimensões de suas imagens definindo a largura e altura desejadas.
-- **Conversão de Formatos**: Converta imagens entre os formatos populares, como JPG, PNG e WEBP, com a possibilidade de configurar a compressão para otimizar o tamanho dos arquivos.
-- **Processamento Simultâneo**: Realize o redimensionamento e conversão de várias imagens ao mesmo tempo, economizando tempo e esforço.
+A **Nova Software** foi fundada com a missão de transformar a maneira como as empresas gerenciam seus processos de vendas e operações online. Oferecemos soluções tecnológicas avançadas que não só simplificam, mas também impulsionam o crescimento sustentável dos nossos parceiros de negócios.
 
-## 🛠️ Tecnologias Utilizadas
+## **Tecnologias Utilizadas**
 
-- **Frontend:**
-  - [tailwindcss](https://tailwindcss.com/) - Biblioteca de template para construção de interfaces.
+- **Spring Boot**: Framework principal para o desenvolvimento da nossa aplicação, proporcionando uma base sólida, escalável e eficiente para a construção de microserviços.
+  
+- **Tailwind CSS**: Utilizado para estilização de baixo nível, permitindo uma personalização rápida e flexível, mantendo o design limpo e responsivo.
 
-- **Backend:**
-  - [Springboot](https://spring.io/projects/spring-boot/) - Framework para construção de aplicações Java de forma rápida e eficiente.
+## **Como Contribuir**
 
-## 📥 Começando
+Estamos sempre abertos a contribuições da comunidade! Se você deseja colaborar com o desenvolvimento da **Nova Software**, siga estas etapas:
+1. **Abra uma Issue**: Caso tenha uma sugestão, melhoria ou bug para relatar.
+2. **Envie um Pull Request**: Para corrigir ou melhorar a funcionalidade, semeando inovações no projeto.
 
-Para configurar este projeto localmente, siga estes passos:
+Toda contribuição é bem-vinda e apreciada!
 
-1. **Clone o repositório**
+## **Contato**
 
-```bash
-    git clone https://github.com/iKaueMatos/image-upload
-```
+Para mais informações sobre nossos serviços e produtos, visite nosso site:
 
-2. **Acessar o diretorio**
- 
-```bash
-    cd AjudaAi-Converter
-```
+- [www.novasoftwaresolutions.com.br](http://www.novasoftware.com.br)
 
-### 💡 Contribuindo
+Entre em contato diretamente conosco pelo e-mail:
 
-Agradecemos contribuições! Para contribuir com este projeto:
+- [contato@novasoftware.com.br](mailto:contato@novasoftware.com.br)
 
-1. Faça um fork do repositório.
-2. Crie um novo branch: git checkout -b feature/SuaFuncionalidade.
-3. Faça suas alterações e faça commit: git commit -m 'Adicione sua funcionalidade'.
-4. Envie para o branch: git push origin feature/SuaFuncionalidade.
-5. Abra um pull request para discutir suas alterações.
+## **Siga-nos nas Redes Sociais**
 
-### 📝 Licença
+Fique por dentro das últimas novidades e atualizações da **Nova Software** nas redes sociais:
 
-Este projeto está licenciado sob a Licença MIT. Veja o arquivo LICENSE para mais detalhes.
-
-### 📬 Contato
-
-Para qualquer dúvida, sinta-se à vontade para entrar em contato:
-
-- Kauê de matos oliveira - ikauedeveloper@gmail.com
-- GitHub: https://github.com/iKaueMatos/
+- [GitHub](https://github.com/NovaSoftware-Software-Organization)
+- [LinkedIn](https://www.linkedin.com/company/nova-software-organization)
+- [Instagram](https://www.instagram.com/novasoftwareorganization)

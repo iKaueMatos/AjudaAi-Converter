@@ -1,56 +1,61 @@
-<div th:fragment="header" class="bg-violet-700">
-  <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+<div th:fragment="header" class="bg-black shadow-lg">
+  <nav class="mx-auto max-w-7xl flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+    <!-- Logo -->
     <div class="flex lg:flex-1">
-      <a href="/" class="-m-1.5 p-1.5">
-        <span class="font-bold text-lg text-white duration-100 hover:scale-105">Ajuda AI</span>
+      <a href="/" class="text-2xl font-bold text-white hover:text-orange-600 hover:scale-110 duration-200">
+        Nova 
+        <span class="text-orange-600 hover:text-white">Tools</span>
       </a>
     </div>
+
+    <!-- Mobile menu button -->
     <div class="flex lg:hidden">
-      <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white" id="mobile-menu-button">
+      <button type="button" class="-m-2.5 p-2.5 text-white" id="mobile-menu-button">
         <span class="sr-only">Open main menu</span>
-        <svg class="h-6 w-6" fill="#FFF" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-16 6h16" />
         </svg>
       </button>
     </div>
-    <div class="hidden lg:flex lg:gap-x-12">
-      <a href="/" class="text-lg font-semibold leading-6 text-white duration-100 hover:scale-105">Inicio</a>
-      <a href="#services" class="text-lg font-semibold leading-6 text-white duration-100 hover:scale-105">Todas Ferramentas</a>
-      <a href="/redmensioning" class="text-lg font-semibold leading-6 text-white duration-100 hover:scale-105">Redimensionar imagens</a>
-      <a href="#about" class="text-lg font-semibold leading-6 text-white duration-100 hover:scale-105">Sobre nós</a>
+
+    <!-- Desktop Menu -->
+    <div class="hidden lg:flex lg:gap-x-8 items-center">
+      <a href="/" class="text-lg font-bold text-white hover:text-orange-500 duration-200 hover:scale-105">Inicio</a>
+      <div class="relative group">
+        <button class="text-lg font-bold text-white hover:text-orange-500 duration-200">Ferramentas</button>
+        <div class="absolute z-10 w-56 origin-top-right ring-1 ring-black ring-opacity-5 focus:outline-none bg-orange-500 shadow-lg rounded-lg mt-2 min-w-[200px] opacity-0 group-hover:opacity-100 transition-all duration-200 ease-in-out">
+          <a href="#services" class="block px-4 py-2 text-white hover:bg-orange-600 hover:text-black font-bold">Todas Ferramentas</a>
+          <a href="/redmensioning" class="block px-4 py-2 text-white hover:bg-orange-600 hover:text-black font-bold">Redimensionar Imagens</a>
+          <a href="#convert" class="block px-4 py-2 text-white hover:bg-orange-600 hover:text-black font-bold">Conversão de Arquivos</a>
+        </div>
+      </div>
+      <a href="#about" class="text-lg font-bold text-gray-200 hover:text-orange-500 duration-200 hover:scale-105">Sobre Nós</a>
     </div>
-    <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-      <a href="/login" class="font-semibold leading-6 text-white text-lg scale-105 duration-100 hover:scale-105">Entrar<span aria-hidden="true"></span></a>
+
+    <!-- Login / Signup Buttons -->
+    <div class="hidden lg:flex lg:flex-1 lg:justify-end gap-4">
+      <a href="/login" class="bg-orange-500 text-white font-semibold px-5 py-2 rounded-lg hover:bg-orange-600 duration-200 flex items-center">Entrar</a>
+      <a href="/register" class="bg-transparent border-2 border-orange-500 text-orange-500 font-semibold px-5 py-2 rounded-lg hover:bg-orange-500 hover:text-white duration-200">Registrar</a>
     </div>
   </nav>
 
   <!-- Mobile Menu -->
   <div class="hidden" role="dialog" aria-modal="true" id="mobile-menu">
-    <div class="fixed inset-0 z-10"></div>
-    <div class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-violet-800 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-      <div class="flex items-center justify-between">
-        <a href="/" class="-m-1.5 p-1.5">
-          <span class="font-bold text-lg text-white duration-100 hover:scale-105">Ajuda AI</span>
-        </a>
-        <button type="button" id="close-menu-button" class="-m-2.5 rounded-md p-2.5 text-white">
-          <span class="sr-only">Close menu</span>
-          <svg class="h-6 w-6" fill="#FFF" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+    <div class="fixed inset-0 z-10 bg-gray-800 opacity-50"></div>
+    <div class="fixed inset-y-0 right-0 z-20 w-full bg-gray-900 p-6 sm:max-w-xs">
+      <div class="flex items-center justify-between mb-6">
+        <a href="/" class="text-2xl font-bold text-white">Nova Tools</a>
+        <button id="close-menu-button" class="text-white">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
       </div>
-      <div class="mt-6 flow-root">
-        <div class="-my-6 divide-y divide-gray-500/10">
-          <div class="space-y-2 py-6">
-            <a href="/" class="-mx-3 block rounded-lg px-3 py-2 font-semibold leading-7 text-white hover:bg-purple-600 text-lg" onclick="closeMenu()">Inicio</a>
-            <a href="#services" class="-mx-3 block rounded-lg px-3 py-2 font-semibold leading-7 text-white hover:bg-purple-600 text-lg" onclick="closeMenu()">Todas Ferramentas</a>
-            <a href="/redmensioning" class="text-lg font-semibold leading-6 text-white duration-100 hover:scale-105">Redimensionar imagens</a>
-            <a href="#about" class="-mx-3 block rounded-lg px-3 py-2 font-semibold leading-7 text-white hover:bg-purple-600 text-lg" onclick="closeMenu()">Sobre</a>
-          </div>
-          <div class="py-6">
-            <a href="/login" class="-mx-3 block rounded-lg px-3 py-2.5 font-semibold leading-7 text-white hover:bg-purple-600 text-lg" onclick="closeMenu()">Entrar</a>
-          </div>
-        </div>
+      <div class="space-y-4">
+        <a href="/" class="block text-lg text-white hover:bg-orange-500 p-2 rounded">Inicio</a>
+        <a href="#services" class="block text-lg text-white hover:bg-orange-500 p-2 rounded">Todas Ferramentas</a>
+        <a href="/redmensioning" class="block text-lg text-white hover:bg-orange-500 p-2 rounded">Redimensionar Imagens</a>
+        <a href="#about" class="block text-lg text-white hover:bg-orange-500 p-2 rounded">Sobre Nós</a>
       </div>
     </div>
   </div>
