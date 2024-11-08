@@ -28,23 +28,15 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Copy files with SSH
-        uses: easingthemes/ssh-deploy@main
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          ARGS: "-rltgoDzvO"
-          SOURCE: "./target/*.jar"
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-          REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          TARGET: ${{ secrets.TARGET_DIR }}
-          EXCLUDE: "/target/, /src/, **.env, rebuild_app.sh, watcher.sh"
+      - name: Copy files with SCP
+        run: |
+          scp -o StrictHostKeyChecking=no ./target/*.jar ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.TARGET_DIR }}
 
       - name: Start application on EC2
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} << 'EOF'
-            # Navegar para o diretório de destino
+          ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} << EOF
             cd ${{ secrets.TARGET_DIR }}
-
+            
             if pgrep -f 'java -jar'; then
               echo "Parando aplicação em execução..."
               pkill -f 'java -jar'
@@ -61,4 +53,3 @@ jobs:
               exit 1
             fi
           EOF
-
