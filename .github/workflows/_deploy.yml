@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Checkout the files
         uses: actions/checkout@v3
-      
+
       - name: Setup Java
         uses: actions/setup-java@v3
         with:
@@ -28,13 +28,9 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Copy JAR files with SCP
+      - name: Copy files with SCP
         run: |
           scp -o StrictHostKeyChecking=no ./target/*.jar ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.TARGET_DIR }}
-
-      - name: Copy static files (CSS, JS, Images)
-        run: |
-          scp -o StrictHostKeyChecking=no -r ./src/main/resources/static/* ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.TARGET_DIR }}/static/
 
       - name: Start application on EC2
         run: |
