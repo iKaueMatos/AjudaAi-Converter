@@ -14,16 +14,16 @@ jobs:
       - name: Checkout the files
         uses: actions/checkout@v3
       
-      # - name: Setup NodeJS
-      #   uses: actions/setup-node@v2
-      #   with:
-      #     node-version: '20.x'
+      - name: Setup NodeJS
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20.x'
 
-      # - name: Install dependencies
-      #   run: npm install
+      - name: Install dependencies
+        run: npm install
       
-      # - name: Build application
-      #   run: npm run build
+      - name: Build application
+        run: npm run build
 
       - name: Setup Java
         uses: actions/setup-java@v3
@@ -39,9 +39,13 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Copy files with SCP
+      - name: Copy JAR files with SCP
         run: |
           scp -o StrictHostKeyChecking=no ./target/*.jar ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.TARGET_DIR }}
+
+      - name: Copy static files (CSS, JS, Images)
+        run: |
+          scp -o StrictHostKeyChecking=no -r ./src/main/resources/static/* ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.TARGET_DIR }}/static/
 
       - name: Start application on EC2
         run: |
