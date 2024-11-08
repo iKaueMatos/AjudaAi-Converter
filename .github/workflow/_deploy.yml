@@ -9,6 +9,7 @@ jobs:
   deploy:
     name: Deploy to EC2
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout the files
         uses: actions/checkout@v3
@@ -22,6 +23,11 @@ jobs:
       - name: Build with Maven
         run: mvn clean package -DskipTests
 
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
       - name: Copy files with SSH
         uses: easingthemes/ssh-deploy@main
         env:
@@ -33,24 +39,26 @@ jobs:
           TARGET: ${{ secrets.TARGET_DIR }}
           EXCLUDE: "/target/, /src/, **.env, rebuild_app.sh, watcher.sh"
 
-      - name: Setup SSH
-        uses: webfactory/ssh-agent@v0.5.3
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
       - name: Start application on EC2
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} << 'EOF'
+            # Navegar para o diretório de destino
             cd ${{ secrets.TARGET_DIR }}
-            java -jar *.jar # Executa o JAR gerado
+
+            if pgrep -f 'java -jar'; then
+              echo "Parando aplicação em execução..."
+              pkill -f 'java -jar'
+            fi
+
+            echo "Iniciando nova versão da aplicação..."
+            nohup java -jar *.jar > app.log 2>&1 &
+            
+            sleep 5
+            if pgrep -f 'java -jar'; then
+              echo "Aplicação iniciada com sucesso!"
+            else
+              echo "Falha ao iniciar a aplicação."
+              exit 1
+            fi
           EOF
 
-      - name: Notify on success
-        if: success()
-        run: |
-          curl -X POST -H "Content-Type: application/json" -d '{"content": "Deploy feito com sucesso! 🎉"}' ${{ secrets.DISCORD_WEBHOOK_URL }}
-
-      - name: Notify on failure
-        if: failure()
-        run: |
-          curl -X POST -H "Content-Type: application/json" -d '{"content": "Pipeline falhou! 😞"}' ${{ secrets.DISCORD_WEBHOOK_URL }}
