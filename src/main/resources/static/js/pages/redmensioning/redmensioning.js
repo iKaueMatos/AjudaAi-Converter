@@ -9,16 +9,13 @@ const dropZone = document.getElementById("dropZone");
 const previewDiv = document.querySelector(".preview");
 
 async function createImagePreview(file, index) {
-  // Criação do contêiner principal para a imagem e seus elementos
   const mainContainer = document.createElement("div");
   mainContainer.classList.add("flex", "flex-col", "items-center", "p-4", "rounded-lg", "shadow-md", "bg-white", "m-2");
 
-  // Título da imagem
   const imgTitle = document.createElement("h3");
   imgTitle.classList.add("font-semibold", "text-center", "text-gray-700", "mb-2");
   imgTitle.textContent = `Imagem ${index + 1}: ${file.name} (${file.type.split("/")[1].toUpperCase()})`;
 
-  // Leitura e criação da imagem
   const img = await new Promise((resolve, reject) => {
     reader.onload = function (event) {
       const img = new Image();
@@ -30,12 +27,10 @@ async function createImagePreview(file, index) {
     reader.readAsDataURL(file);
   });
 
-  // Dimensões da imagem
   const imgDimensions = document.createElement("p");
   imgDimensions.classList.add("text-sm", "text-gray-500", "text-center");
   imgDimensions.textContent = `Dimensões: ${img.width} x ${img.height} pixels`;
 
-  // Adiciona os elementos ao contêiner principal
   mainContainer.appendChild(imgTitle);
   mainContainer.appendChild(img);
   mainContainer.appendChild(imgDimensions);
@@ -52,7 +47,7 @@ async function previewImages() {
   const files = fileInput.files;
   if (!files || !preview) return;
 
-  preview.innerHTML = ""; // Limpar pré-visualizações anteriores
+  preview.innerHTML = "";
 
   const fileArray = Array.from(files);
   for (const [index, file] of fileArray.entries()) {

@@ -10,15 +10,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ImageZipService {
-
-    /**
-     * Adiciona um arquivo temporário ao arquivo ZIP.
-     * 
-     * @param fileName Nome do arquivo dentro do ZIP
-     * @param tempFile Arquivo temporário a ser adicionado
-     * @param zipOutputStream OutputStream do arquivo ZIP
-     * @throws IOException Caso ocorra erro na leitura ou escrita dos arquivos
-     */
     public void addToZip(String fileName, File tempFile, ZipArchiveOutputStream zipOutputStream) throws IOException {
         ZipArchiveEntry zipEntry = new ZipArchiveEntry(fileName);
         zipOutputStream.putArchiveEntry(zipEntry);
@@ -30,7 +21,6 @@ public class ImageZipService {
                 zipOutputStream.write(buffer, 0, len);
             }
         } catch (IOException e) {
-            System.err.println("Erro ao adicionar arquivo ao ZIP: " + e.getMessage());
             throw e;
         } finally {
             zipOutputStream.closeArchiveEntry();

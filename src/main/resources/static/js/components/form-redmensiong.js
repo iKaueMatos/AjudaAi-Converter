@@ -6,29 +6,11 @@ const downloadButton = document.getElementById('downloadButton');
 const progressBar = document.getElementById('progressBar');
 const progressText = document.getElementById('progressText');
 
-window.addEventListener('load', restoreFormData);
 form.addEventListener('submit', (event) => {
     event.preventDefault();
     resetProgress();
     submitForm();
 });
-
-function restoreFormData() {
-    const formTitle = sessionStorage.getItem('formTitle');
-    const formDimension = sessionStorage.getItem('formDimension');
-    const formFormat = sessionStorage.getItem('formFormat');
-    const formCompression = sessionStorage.getItem('formCompression');
-
-    if (!formTitle || !formDimension || !formFormat || !formCompression) {
-        resetForm();
-        return;
-    }
-
-    form.title.value = formTitle;
-    form.dimension.value = formDimension;
-    form.format.value = formFormat;
-    form.compression.value = formCompression;
-}
 
 function resetProgress() {
     progressBar.style.width = '0%';

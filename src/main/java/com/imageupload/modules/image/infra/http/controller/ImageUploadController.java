@@ -45,14 +45,12 @@ public class ImageUploadController {
         }
 
         if (files.length == 0) {
-            logger.warn("Nenhum arquivo selecionado para upload.");
             Map<String, String> error = new HashMap<>();
             error.put("message", "Nenhum arquivo selecionado!");
             return ResponseEntity.badRequest().body(new ResponseDTO<>(HttpStatus.BAD_REQUEST, error, "Nenhum arquivo selecionado"));
         }
 
         try {
-            logger.info("Iniciando o processamento de {} arquivo(s).", files.length);
             byte[] resultResponse = imageProcessingUseCase.execute(files, requestData);
             return ResponseEntity.ok()
                 .header("Content-Disposition", "attachment; filename=\"" + requestData.getTitle() + ".zip\"")
