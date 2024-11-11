@@ -1,9 +1,11 @@
+import { showErrorNotification } from "/js/module/helper/toastify.js";
+
 function validateStep(step) {
   switch (step) {
     case 1:
       const titleElement = document.getElementById("title");
       if (!titleElement || !titleElement.value.trim()) {
-        alert("Por favor, preencha o título do arquivo.");
+        showErrorNotification("Por favor, preencha o título do arquivo.");
         return false;
       }
       break;
@@ -15,11 +17,11 @@ function validateStep(step) {
       const height = heightElement ? parseFloat(heightElement.value) : null;
       
       if (!width || !height) {
-        alert("Por favor, preencha ambos os campos de largura e altura.");
+        showErrorNotification("Por favor, preencha ambos os campos de largura e altura.");
         return false;
       }
       if (width <= 0 || height <= 0) {
-        alert("A largura e a altura devem ser maiores que zero.");
+        showErrorNotification("A largura e a altura devem ser maiores que zero.");
         return false;
       }
       break;
@@ -28,7 +30,7 @@ function validateStep(step) {
       const formatElement = document.getElementById("format");
       const compressionElement = document.getElementById("compression");
       if (!formatElement || !formatElement.value || !compressionElement || !compressionElement.value) {
-        alert("Por favor, selecione um formato de conversão e um nível de compressão.");
+        showErrorNotification("Por favor, selecione um formato de conversão e um nível de compressão.");
         return false;
       }
       break;
@@ -36,7 +38,7 @@ function validateStep(step) {
     case 4:
       const filesElement = document.getElementById("formFile");
       if (!filesElement || filesElement.files.length === 0) {
-        alert("Por favor, selecione pelo menos uma imagem para upload.");
+        showErrorNotification("Por favor, selecione pelo menos uma imagem para upload.");
         return false;
       }
       break;
@@ -45,7 +47,7 @@ function validateStep(step) {
       const downloadButton = document.getElementById("downloadButton");
       const fileId = downloadButton ? downloadButton.getAttribute("href") : null;
       if (!fileId || !downloadButton) {
-        alert("O botão de download está faltando ou o arquivo não está pronto para download.");
+        showErrorNotification("O botão de download está faltando ou o arquivo não está pronto para download.");
         return false;
       }
       break;
