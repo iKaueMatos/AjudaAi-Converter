@@ -11,6 +11,7 @@
     content="Redimensione e comprima imagens JPG e PNG de forma fácil e rápida com nossa ferramenta online. Carregue várias imagens, defina altura, largura e formato de conversão, e faça o download com compressão personalizada.">
   <meta name="keywords"
     content="redimensionar imagens, compressão de imagens, conversão de imagens, JPG, PNG, ferramenta de redimensionamento, redimensionamento online, upload de imagens, redimensionar JPG, redimensionar PNG">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
 
@@ -52,7 +53,7 @@
           <!-- Step 1 -->
           <div class="step" id="step-1">
             <div class="mb-6">
-              <label for="title" class="block mb-2 font-semibold text-gray-700">Título do Arquivo:</label>
+              <label for="title" class="block mb-2 font-semibold text-black">Título do Arquivo:</label>
               <input type="text"
                 class="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                 id="title" name="title" placeholder="Digite o título" required />
@@ -67,21 +68,21 @@
           <div class="hidden step" id="step-2">
             <div class="grid grid-cols-1 gap-4 mb-6 md:grid-cols-2">
               <div>
-                <label for="width" class="block mb-2 font-semibold text-gray-700">Largura (px):</label>
+                <label for="width" class="block mb-2 font-semibold text-black">Largura (px):</label>
                 <input type="number"
                   class="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                   id="width" name="width" placeholder="Ex: 1200" required />
               </div>
 
               <div>
-                <label for="height" class="block mb-2 font-semibold text-gray-700">Altura (px):</label>
+                <label for="height" class="block mb-2 font-semibold text-black">Altura (px):</label>
                 <input type="number"
                   class="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                   id="height" name="height" placeholder="Ex: 1300" required />
               </div>
             </div>
             <button type="button" onclick="previousStep(1)"
-              class="w-full px-4 py-2 mb-4 font-bold text-gray-800 transition duration-200 ease-in-out bg-gray-300 rounded-lg hover:bg-gray-400">
+              class="w-full px-4 py-2 mb-4 font-bold text-black transition duration-200 ease-in-out bg-gray-300 rounded-lg hover:bg-gray-400">
               Voltar
             </button>
             <button type="button" id="enter" onclick="nextStep()"
@@ -93,16 +94,17 @@
           <!-- Step 3 -->
           <div class="hidden step" id="step-3">
             <div class="mb-6">
-              <label for="format" class="block mb-2 font-semibold text-gray-700">Formato de Conversão:</label>
+              <label for="format" class="block mb-2 font-semibold text-black">Formato de Conversão:</label>
               <select
                 class="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                 id="format" name="format" required>
                 <option value="jpg">JPG</option>
                 <option value="png">PNG</option>
+                <option value="webp">WEBP</option>
               </select>
             </div>
             <div class="mb-6">
-              <label for="compression" class="block mb-2 font-semibold text-gray-700">Nível de Compressão:</label>
+              <label for="compression" class="block mb-2 font-semibold text-black">Nível de Compressão:</label>
               <select
                 class="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                 id="compression" name="compression" required>
@@ -112,7 +114,7 @@
               </select>
             </div>
             <button type="button" onclick="previousStep(2)"
-              class="w-full px-4 py-2 mb-4 font-bold text-gray-800 transition duration-200 ease-in-out bg-gray-300 rounded-lg hover:bg-gray-400">
+              class="w-full px-4 py-2 mb-4 font-bold text-black transition duration-200 ease-in-out bg-gray-300 rounded-lg hover:bg-gray-400">
               Voltar
             </button>
             <button type="button" onclick="nextStep()" id="enter"
@@ -124,7 +126,7 @@
           <!-- Step 4 -->
           <div class="hidden step" id="step-4">
             <div class="mb-6">
-              <label for="formFile" class="block mb-2 font-semibold text-gray-700">Selecionar Imagens:</label>
+              <label for="formFile" class="block mb-2 font-semibold text-black">Selecionar Imagens:</label>
               <div id="dropZone"
                 class="flex flex-col items-center justify-center w-full px-4 py-6 border-2 border-gray-300 border-dashed rounded-lg bg-gray-50">
                 <input class="hidden" type="file" id="formFile" name="files" multiple accept="image/*" required
@@ -132,11 +134,11 @@
                 <label for="formFile" class="px-4 py-2 text-white rounded-lg cursor-pointer bg-orange-500">
                   Clique ou arraste as imagens aqui
                 </label>
-                <p class="mt-2 text-gray-500">Arraste suas imagens para o upload</p>
+                <p class="mt-2 text-black">Arraste suas imagens para o upload</p>
               </div>
             </div>
             <button type="button" onclick="previousStep(3)"
-              class="w-full px-4 py-2 mb-4 font-bold text-gray-800 transition duration-200 ease-in-out bg-gray-300 rounded-lg hover:bg-gray-400">
+              class="w-full px-4 py-2 mb-4 font-bold text-black transition duration-200 ease-in-out bg-gray-300 rounded-lg hover:bg-gray-400">
               Voltar
             </button>
             <button id="enter" type="submit"
@@ -154,7 +156,7 @@
               class="items-center inline-block px-4 py-2 mt-4 font-bold text-center text-white transition duration-200 ease-in-out rounded-lg bg-orange-500 hover:bg-orange-600"
               th:href="@{/download/{id}(id=${fileId})}">Baixar Imagem</a>
             </div>
-            <button type="button" onclick="clearForm()"
+            <button type="button" onclick="resetForm()"
               class="w-full px-4 py-2 mb-4 font-bold text-black transition duration-200 ease-in-out bg-gray-300 rounded-lg hover:bg-gray-400">
               Voltar para inicio
             </button>

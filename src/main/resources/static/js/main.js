@@ -7,7 +7,7 @@ window.previousStep = redmensioning.previousStep;
 window.closeMenu = pages.closeMenu;
 window.openMenu = pages.openMenu;
 window.startLoading = redmensioning.startLoading;
-window.clearForm = form.resetForm;
+window.resetForm = redmensioning.resetForm;
 window.previewImages = redmensioning.previewImages;
 
 document.addEventListener("DOMContentLoaded", () => {
